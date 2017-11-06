@@ -164,9 +164,9 @@ public class PlayerMovement : MonoBehaviour {
 	void LateUpdate(){
 		if (grounded) {
 			if (myBody.velocity.x > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
-				transform.GetComponent<SpriteRenderer> ().flipX = true;
-			} else if (myBody.velocity.x < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
 				transform.GetComponent<SpriteRenderer> ().flipX = false;
+			} else if (myBody.velocity.x < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
+				transform.GetComponent<SpriteRenderer> ().flipX = true;
 			}
 		}
 	}

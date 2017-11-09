@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		//check if object is on ground via an overlap circle checking for the ground layer from around the object's feet.
 		if (!justJumped) {
-			grounded = Physics2D.OverlapCircle (new Vector2 (transform.position.x, transform.position.y - transform.GetComponent<SpriteRenderer>().bounds.size.y/2), groundCheckCircRad, groundLayer);
+			grounded = Physics2D.OverlapCircle (new Vector2 (transform.position.x, transform.position.y - transform.GetComponent<SpriteRenderer>().bounds.size.y), groundCheckCircRad, groundLayer);
 		} else {
 			grounded = false;
 		}
@@ -172,9 +172,9 @@ public class PlayerMovement : MonoBehaviour {
 	void LateUpdate(){
 		if (grounded) {
 			if (myBody.velocity.x > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
-				transform.GetComponent<SpriteRenderer> ().flipX = true;
-			} else if (myBody.velocity.x < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
 				transform.GetComponent<SpriteRenderer> ().flipX = false;
+			} else if (myBody.velocity.x < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerSkid") && animator.GetBool("slowing") == false) {
+				transform.GetComponent<SpriteRenderer> ().flipX = true;
 			}
 		}
 	}
@@ -203,14 +203,14 @@ public class PlayerMovement : MonoBehaviour {
 		case PlayerType.quick:
 			maxSpeed = 12;
 			accel = 40;
-			jumpSpeed = 20;
+			jumpSpeed = 25;
 			drag = 40;
 			myBody.gravityScale = 5;
 			break;
 		case PlayerType.normal:
 			maxSpeed = 8;
 			accel = 8;
-			jumpSpeed = 15;
+			jumpSpeed = 18;
 			drag = 12;
 			myBody.gravityScale = 3;
 			break;
